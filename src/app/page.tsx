@@ -25,11 +25,21 @@ export default async function Home() {
       <header className="mb-8 flex items-center justify-between">
         <h1 className="text-2xl font-bold">Media Tracker</h1>
         {user ? (
-          <span className="text-sm text-neutral-500">{user.email}</span>
+          <form action="/auth/signout" method="post" className="flex items-center gap-3">
+            <span className="text-sm text-neutral-500">{user.email}</span>
+            <button type="submit" className="text-sm underline">
+              로그아웃
+            </button>
+          </form>
         ) : (
-          <Link href="/login" className="text-sm underline">
-            로그인
-          </Link>
+          <span className="flex gap-3 text-sm">
+            <Link href="/login" className="underline">
+              로그인
+            </Link>
+            <Link href="/signup" className="underline">
+              회원가입
+            </Link>
+          </span>
         )}
       </header>
 

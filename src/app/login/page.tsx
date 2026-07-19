@@ -125,6 +125,13 @@ export default function LoginPage() {
         </form>
       )}
 
+      <p className="text-sm text-neutral-500">
+        계정이 없나요?{" "}
+        <a href="/signup" className="underline">
+          회원가입
+        </a>
+      </p>
+
       {mode === "magic" && !sent && (
         <p className="text-xs text-neutral-500">
           참고: 기본 메일 발송은 시간당 2통 제한이 있어요. 개발 중에는 비밀번호
