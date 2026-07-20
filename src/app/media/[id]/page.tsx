@@ -88,7 +88,7 @@ export default async function MediaPage({
             <p className="text-sm text-neutral-500">{media.title_original}</p>
           )}
           <p className="mt-2 text-sm">
-            ★ {media.avg_rating ?? "-"}{" "}
+            ★ {media.avg_rating != null ? (media.avg_rating / 2).toFixed(1) : "-"}{" "}
             <span className="text-neutral-500">
               ({media.ratings_count}명 평가)
             </span>

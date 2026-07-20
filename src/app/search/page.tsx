@@ -128,7 +128,7 @@ export default async function SearchPage({
                 )}
               </span>
               <span className="shrink-0 text-sm text-neutral-500">
-                ★ {m.avg_rating ?? "-"}
+                ★ {m.avg_rating != null ? (m.avg_rating / 2).toFixed(1) : "-"}
               </span>
             </Link>
           </li>

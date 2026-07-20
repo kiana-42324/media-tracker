@@ -91,7 +91,8 @@ export default async function Home() {
                 {m.title}
               </span>
               <span className="text-sm text-neutral-500">
-                ★ {m.avg_rating ?? "-"} ({m.ratings_count})
+                ★ {m.avg_rating != null ? (m.avg_rating / 2).toFixed(1) : "-"}{" "}
+                ({m.ratings_count})
               </span>
             </Link>
           </li>
