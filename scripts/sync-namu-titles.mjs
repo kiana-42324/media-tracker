@@ -16,6 +16,17 @@ try {
 }
 const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
+if (!supaUrl) {
+  console.error(
+    "NEXT_PUBLIC_SUPABASE_URL필요합니다.",
+  );
+}
+if (!serviceKey) {
+  console.error(
+    "SUPABASE_SERVICE_ROLE_KEY(환경변수)가 필요합니다.",
+  );
+}
+
 if (!supaUrl || !serviceKey) {
   console.error(
     "NEXT_PUBLIC_SUPABASE_URL(.env.local)과 SUPABASE_SERVICE_ROLE_KEY(환경변수)가 필요합니다.",
