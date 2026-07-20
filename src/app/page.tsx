@@ -56,6 +56,12 @@ export default async function Home() {
         >
           검색
         </button>
+        <Link
+          href="/tags"
+          className="flex shrink-0 items-center rounded-md border border-neutral-300 px-3 text-sm dark:border-neutral-700"
+        >
+          태그
+        </Link>
       </form>
 
       <h2 className="mb-4 text-lg font-semibold">평점 랭킹</h2>

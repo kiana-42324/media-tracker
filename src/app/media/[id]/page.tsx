@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { LogEditor } from "@/components/log-editor";
+import { genreLabel } from "@/lib/genre-labels";
 
 const TYPE_LABEL: Record<string, string> = {
   anime: "애니",
@@ -24,7 +25,7 @@ export default async function MediaPage({
   const { data: media } = await supabase
     .from("media")
     .select(
-      "*, anime_details(*), game_details(*), music_details(*), media_genres(genres(name))",
+      "*, anime_details(*), game_details(*), music_details(*), media_genres(genres(id, name))",
     )
     .eq("id", mediaId)
     .single();
@@ -54,8 +55,8 @@ export default async function MediaPage({
     .limit(20);
 
   const genres = media.media_genres
-    .map((mg) => mg.genres?.name)
-    .filter(Boolean) as string[];
+    .map((mg) => mg.genres)
+    .filter(Boolean) as { id: number; name: string }[];
 
   const anime = media.anime_details;
   const game = media.game_details;
@@ -105,12 +106,13 @@ export default async function MediaPage({
           {genres.length > 0 && (
             <p className="mt-2 flex flex-wrap gap-1">
               {genres.map((g) => (
-                <span
-                  key={g}
-                  className="rounded-full border border-neutral-200 px-2 py-0.5 text-xs dark:border-neutral-700"
+                <Link
+                  key={g.id}
+                  href={`/search?genre=${g.id}`}
+                  className="rounded-full border border-neutral-200 px-2 py-0.5 text-xs hover:bg-neutral-50 dark:border-neutral-700 dark:hover:bg-neutral-900"
                 >
-                  {g}
-                </span>
+                  {genreLabel(g.name)}
+                </Link>
               ))}
             </p>
           )}
