@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
-const USERNAME_RE = /^[a-zA-Z0-9_]{3,30}$/;
+const USERNAME_RE = /^[가-힣a-zA-Z0-9_]{2,30}$/;
 
 export default function SignupPage() {
   const router = useRouter();
@@ -21,7 +21,7 @@ export default function SignupPage() {
     setError(null);
 
     if (!USERNAME_RE.test(username)) {
-      setError("닉네임은 영문/숫자/밑줄 3~30자로 입력해 주세요.");
+      setError("닉네임은 한글/영문/숫자/밑줄 2~30자로 입력해 주세요.");
       return;
     }
     if (password.length < 6) {
@@ -86,7 +86,7 @@ export default function SignupPage() {
             required
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="닉네임 (영문/숫자/밑줄 3~30자)"
+            placeholder="닉네임 (한글/영문/숫자 2~30자)"
             className="rounded-md border border-neutral-300 px-3 py-2 text-sm dark:border-neutral-700 dark:bg-neutral-900"
           />
           <input
